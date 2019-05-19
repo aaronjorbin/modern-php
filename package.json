@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "mdx-deck deck.mdx -p 4444",
-    "build": "mdx-deck build deck.mdx",
+    "start": "mdx-deck deck.js -p 4444",
+    "build": "mdx-deck build deck.js",
     "now-build": "npm run build",
     "help": "mdx-deck"
   },
