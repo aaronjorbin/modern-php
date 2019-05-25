@@ -1,0 +1,128 @@
+import { Notes } from 'mdx-deck';
+
+# New Features in PHP
+
+<Notes>
+	If you Have been focused on PHP5.2, lots of stuff is available when you upgrade
+</Notes>
+
+---
+
+# Namespaes
+
+<Notes>
+	5.3
+</Notes>
+
+---
+
+# Traits
+
+<Notes>
+	5.4
+</Notes>
+
+---
+
+# Short Array Syntax
+
+<Notes>
+	5.4
+</Notes>
+
+---
+
+# Type Declerations
+
+<Notes>
+	Started in 5.0, callable added in 5.4, a bunch added in 7.0, further improved in 7.1 and 7.2
+	Return type declerations added in 7.0
+</Notes>
+
+---
+
+```php
+
+	function getDataStructre( int $page ): ?WP_Post {
+		...
+	}
+
+```
+
+<Notes>
+	Intent is clearer
+	Improved Performance
+	? signifies that null can be returned
+</Notes>
+
+---
+
+# Syntactical Sugar & Other Happy Things
+
+<Notes>
+	Some pieces don't change the way you write code, they just make it a bit nicer 
+</Notes>
+
+---
+
+# Null coalescing operator
+
+```php
+	$name = $user->user_nicename ?? "Friend";
+	echo "Howdy " . $name;
+```
+
+<Notes>
+	7.0
+	Syntactical Sugar to make isset ternary shorter
+</Notes>
+
+---
+
+# intdiv
+
+```php
+	$x = 10;
+	$y = 3;
+	intdiv($x, $y); // 3
+	( $x - ( $x % $y ) ) / $y; // 3 
+```
+
+<Notes>
+	Returns the integer 
+	Helpful for something like pagination
+</Notes>
+
+
+---
+
+# Negative string offsets
+
+```php
+echo '#wpheartstswift'[-3]; // i;
+```
+
+<Notes>
+	7.1
+</Notes>
+
+---
+
+# Abstract method overriding
+
+<Notes>
+	Abtract classes can overide methods when extending each other
+	7.2
+</Notes>
+
+---
+
+# Trailing Commas in Calls
+
+```php
+	lets_pretend_this_is_a_very_long_function_ok_maybe_dont_pretend(
+		$a,
+		$b,
+		$c,
+	);
+```
