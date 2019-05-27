@@ -3,15 +3,24 @@ import { Notes } from 'mdx-deck';
 # New Features in PHP
 
 <Notes>
-	If you Have been focused on PHP5.2, lots of stuff is available when you upgrade
+	If you have been focused on PHP5.2, lots of stuff is available when you upgrade
 </Notes>
 
 ---
 
-# Namespaes
+# Namespaces
 
 <Notes>
 	5.3
+</Notes>
+
+---
+
+# Closures
+
+<Notes>
+	5.3
+	Need to be careful to not overuse them
 </Notes>
 
 ---
@@ -24,22 +33,7 @@ import { Notes } from 'mdx-deck';
 
 ---
 
-# Short Array Syntax
-
-<Notes>
-	5.4
-</Notes>
-
----
-
-# Type Declerations
-
-<Notes>
-	Started in 5.0, callable added in 5.4, a bunch added in 7.0, further improved in 7.1 and 7.2
-	Return type declerations added in 7.0
-</Notes>
-
----
+# Type Declarations 
 
 ```php
 
@@ -50,9 +44,20 @@ import { Notes } from 'mdx-deck';
 ```
 
 <Notes>
+	Started in 5.0, callable added in 5.4, a bunch added in 7.0, further improved in 7.1 and 7.2
+	Return type declerations added in 7.0
 	Intent is clearer
 	Improved Performance
 	? signifies that null can be returned
+</Notes>
+
+---
+
+# Generators
+
+<Notes>
+	5.5
+	@alexis - Can you write this one up, I haven't used generators. 
 </Notes>
 
 ---
@@ -61,6 +66,18 @@ import { Notes } from 'mdx-deck';
 
 <Notes>
 	Some pieces don't change the way you write code, they just make it a bit nicer 
+</Notes>
+
+---
+
+# Short Array Syntax
+
+```php
+$var = [ 'a', 'b', 'c' ];
+```
+
+<Notes>
+	5.4
 </Notes>
 
 ---
@@ -120,7 +137,7 @@ echo '#wpheartstswift'[-3]; // i;
 # Trailing Commas in Calls
 
 ```php
-	lets_pretend_this_is_a_very_long_function_ok_maybe_dont_pretend(
+	lets_pretend_this_is_a_very_long_function_(
 		$a,
 		$b,
 		$c,
