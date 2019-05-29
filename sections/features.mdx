@@ -36,11 +36,9 @@ import { Notes } from 'mdx-deck';
 # Type Declarations 
 
 ```php
-
-	function getDataStructure( int $page ): ?WP_Post {
-		...
-	}
-
+function getDataStructure( int $page ): ?WP_Post {
+	...
+}
 ```
 
 <Notes>
@@ -100,8 +98,8 @@ $var = [ 'a', 'b', 'c' ];
 # Null Coalescing Operator
 
 ```php
-	$name = $user->user_nicename ?? "Friend";
-	echo "Howdy " . $name;
+$name = $user->user_nicename ?? "Friend";
+echo "Howdy " . $name;
 ```
 
 <Notes>
@@ -114,10 +112,10 @@ $var = [ 'a', 'b', 'c' ];
 # intdiv
 
 ```php
-	$x = 10;
-	$y = 3;
-	intdiv($x, $y); // 3
-	( $x - ( $x % $y ) ) / $y; // 3 
+$x = 10;
+$y = 3;
+intdiv( $x, $y ); // 3
+( $x - ( $x % $y ) ) / $y; // 3 
 ```
 
 <Notes>
@@ -152,11 +150,11 @@ echo '#wpheartstswift'[-3]; // i;
 # Trailing Commas in Calls
 
 ```php
-	lets_pretend_this_is_a_very_long_function_(
-		$a,
-		$b,
-		$c,
-	);
+lets_pretend_this_is_a_very_long_function_(
+	$a,
+	$b,
+	$c,
+);
 ```
 
 ---
@@ -193,6 +191,24 @@ echo 2 <=> 1; // 1
 	7.0
 	Used for comparing two expressions
 	Returns -1, 0 or 1 according to whether $b is less than, equal to, or greater than $a
+</Notes>
+
+---
+
+# Array Constants
+
+```php
+define( 'ALBUMS', [
+	'Fearless'   => '2009',
+	'Red' 	     => '2012',
+	'1989'       => '2015',
+	'Reputation' => 2017
+] );
+```
+
+<Notes>
+	Constants defined with the define() method could only accept scalar values previously
+	Now you can have constant arrays using the define() method
 </Notes>
 
 ---
