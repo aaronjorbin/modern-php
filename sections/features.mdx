@@ -1,0 +1,217 @@
+import { Notes } from 'mdx-deck';
+
+# New Features in PHP
+
+<Notes>
+	If you have been focused on PHP5.2, lots of stuff is available when you upgrade
+</Notes>
+
+---
+
+# Namespaces
+
+<Notes>
+	5.3
+</Notes>
+
+---
+
+# Closures
+
+<Notes>
+	5.3
+	Need to be careful to not overuse them
+</Notes>
+
+---
+
+# Traits
+
+<Notes>
+	5.4
+</Notes>
+
+---
+
+# Type Declarations 
+
+```php
+
+	function getDataStructre( int $page ): ?WP_Post {
+		...
+	}
+
+```
+
+<Notes>
+	Started in 5.0, callable added in 5.4, a bunch added in 7.0, further improved in 7.1 and 7.2
+	Return type declerations added in 7.0
+	Intent is clearer
+	Improved Performance
+	? signifies that null can be returned
+</Notes>
+
+---
+
+# Generators
+
+```php
+function count_a_lot( $num ) {
+    for ( $i = 1; $i < $num; $i++ ) {
+        yield $i;
+    }
+}
+
+foreach ( count_a_lot( PHP_INT_MAX ) as $num ) {
+	echo "Counting to " . $num . PHP_EOL;
+}
+```
+
+<Notes>
+	5.5
+	Loop through data without building an array in memory
+	Creates an iterator object and tracks current state internally
+	Significant performance boost when working with large arrays
+	Allows for multitasking and concurrency
+</Notes>
+
+---
+
+# Syntactical Sugar & Other Happy Things
+
+<Notes>
+	Some pieces don't change the way you write code, they just make it a bit nicer 
+</Notes>
+
+---
+
+# Short Array Syntax
+
+```php
+$var = [ 'a', 'b', 'c' ];
+```
+
+<Notes>
+	5.4
+</Notes>
+
+---
+
+# Null Coalescing Operator
+
+```php
+	$name = $user->user_nicename ?? "Friend";
+	echo "Howdy " . $name;
+```
+
+<Notes>
+	7.0
+	Syntactical Sugar to make isset ternary shorter
+</Notes>
+
+---
+
+# intdiv
+
+```php
+	$x = 10;
+	$y = 3;
+	intdiv($x, $y); // 3
+	( $x - ( $x % $y ) ) / $y; // 3 
+```
+
+<Notes>
+	Returns the integer 
+	Helpful for something like pagination
+</Notes>
+
+
+---
+
+# Negative String Offsets
+
+```php
+echo '#wpheartstswift'[-3]; // i;
+```
+
+<Notes>
+	7.1
+</Notes>
+
+---
+
+# Abstract Method Overriding
+
+<Notes>
+	Abtract classes can overide methods when extending each other
+	7.2
+</Notes>
+
+---
+
+# Trailing Commas in Calls
+
+```php
+	lets_pretend_this_is_a_very_long_function_(
+		$a,
+		$b,
+		$c,
+	);
+```
+
+---
+
+# Splat Operator
+
+```php
+function do( $foo, ...$args ) {
+	foreach ( $args as $arg ) {
+		...
+	}
+}
+```
+
+<Notes>
+	5.6
+	Allows you to capture a variable number of arguments to a function
+	Used to require using func_get_args()
+	Can be combined with "normal" arguments
+	2+ arguments passed to splat operator can be accessed via array
+</Notes>
+
+---
+
+# Spaceship Operator
+
+```php
+echo 1 <=> 1; // 0
+echo 1 <=> 2; // -1
+echo 2 <=> 1; // 1
+```
+
+<Notes>
+	7.0
+	Used for comparing two expressions
+	Returns -1, 0 or 1 according to whether $b is less than, equal to, or greater than $a
+</Notes>
+
+---
+
+# Exception Handling
+
+```php
+try {
+    $obj = 'foo';
+    $obj->method();
+} catch( Error $e ) {
+    var_dump( $e );
+}
+```
+
+<Notes>
+	7.0 - Exception handling
+	A special exception is thrown upon E_ERROR and E_RECOVERABLE_ERROR
+	These can be handled rather than halting the execution
+	7.1 - Multiple exceptions catching
+	A single catch statement can be used to handle multiple exceptions
+</Notes>
