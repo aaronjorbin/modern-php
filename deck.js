@@ -6,10 +6,13 @@ import { slides as testing } from './sections/testing.mdx';
 import { slides as features } from './sections/features.mdx';
 import { slides as outro } from './sections/outro.mdx';
 
+import aspect43 from '@mdx-deck/themes/aspect-4-3';
 import future from '@mdx-deck/themes/future';
 import highlight from '@mdx-deck/themes/syntax-highlighter';
+import syntaxHighlighterPrism from '@mdx-deck/themes/syntax-highlighter-prism';
+import theme from './theme';
 
-export const themes = [ future, highlight ]
+export const themes = [ aspect43, future, syntaxHighlighterPrism, theme ]
 
 export const slides = [
 	...intro, 
