@@ -18,8 +18,8 @@ export const slides = [
 	...intro, 
 	...history,
 	...importance,
-	...planning, 
+	...features,
+	...planning,
 	...testing, 
-	...features, 
 	...outro
 ];
