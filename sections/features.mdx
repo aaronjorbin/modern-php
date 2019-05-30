@@ -66,11 +66,11 @@ foreach ( count_a_lot( PHP_INT_MAX ) as $num ) {
 ```
 
 <Notes>
-	5.5
-	Loop through data without building an array in memory
-	Creates an iterator object and tracks current state internally
-	Significant performance boost when working with large arrays
-	Allows for multitasking and concurrency
+	Introduced in 5.5.
+	Loop through data without building an array in memory.
+	Creates an iterator object and tracks current state internally.
+	Significant performance boost when working with large arrays.
+	Allows for multitasking and concurrency.
 </Notes>
 
 ---
@@ -170,11 +170,11 @@ function do( $foo, ...$args ) {
 ```
 
 <Notes>
-	5.6
-	Allows you to capture a variable number of arguments to a function
-	Used to require using func_get_args()
-	Can be combined with "normal" arguments
-	2+ arguments passed to splat operator can be accessed via array
+	Introduced in 5.6.
+	Allows you to capture a variable number of arguments to a function.
+	Used to require using func_get_args().
+	Can be combined with "normal" arguments.
+	2+ arguments passed to splat operator can be accessed via array.
 </Notes>
 
 ---
@@ -188,9 +188,9 @@ echo 2 <=> 1; // 1
 ```
 
 <Notes>
-	7.0
-	Used for comparing two expressions
-	Returns -1, 0 or 1 according to whether $b is less than, equal to, or greater than $a
+	Introduced in 7.0.
+	Used for comparing two expressions.
+	Returns -1, 0 or 1 according to whether $b is less than, equal to, or greater than $a.
 </Notes>
 
 ---
@@ -207,8 +207,8 @@ define( 'ALBUMS', [
 ```
 
 <Notes>
-	Constants defined with the define() method could only accept scalar values previously
-	Now you can have constant arrays using the define() method
+	Constants defined with the define() method could only accept scalar values previously.
+	Now you can set array constants using the define() method.
 </Notes>
 
 ---
@@ -225,9 +225,9 @@ try {
 ```
 
 <Notes>
-	7.0 - Exception handling
-	A special exception is thrown upon E_ERROR and E_RECOVERABLE_ERROR
-	These can be handled rather than halting the execution
-	7.1 - Multiple exceptions catching
-	A single catch statement can be used to handle multiple exceptions
+	Introduced updates to exception handling in 7.0.
+	A special exception is thrown upon E_ERROR and E_RECOVERABLE_ERROR.
+	These can be handled rather than halting the execution.
+	Added multiple exceptions catching in 7.1.
+	A single catch statement can be used to handle multiple exceptions.
 </Notes>
