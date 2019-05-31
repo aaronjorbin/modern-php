@@ -28,7 +28,6 @@ import { Notes } from 'mdx-deck';
 
 // PHP 5 and 7 compatible standard tags
 <?php ... ?>
-<?= ... ?>
 ```
 
 <Notes>
@@ -137,4 +136,69 @@ global $$foo->bar;
 <Notes>
 	The global keyword will now only take unambiguous variables.
 	Make sure to add braces to make it unambiguous.
+</Notes>
+
+---
+
+# PHP 4 Style Constructors
+
+```php
+class test {
+	// Deprecated in PHP 7
+	function test() {
+		echo "I'm the old school constructor.";
+	}
+	
+	// PHP 5 and 7 compatible
+	function __construct() {
+		echo "I'm the constructor you should use!";
+	}
+}
+```
+
+<Notes>
+	Classes with a constructor with the same name as the class name are deprecated in PHP 7.
+	These are PHP 4 style constructors.
+	Use __construct() instead for constructor methods.
+</Notes>
+
+---
+
+# Calling Static Methods
+
+```php
+class hello {
+	// Deprecated in PHP 7
+	public function world() {
+		...
+	}
+
+	// PHP 5 and 7 compatible
+	public static function world() {
+		...
+	}
+}
+
+hello::world();
+```
+
+<Notes>
+	Methods that are called as static methods but not declared as static are deprecated.
+</Notes>
+
+---
+
+# Counting Non-Countable Types
+
+```php
+// Deprecated in PHP 7
+count( NULL );
+
+// This is OK
+count( [ 1, 2, 3 ] );
+```
+
+<Notes>
+	Trying to count non-countable types in PHP 7 is now deprecated.
+	Ensure you're implementing an object with the Countable interface or an array.
 </Notes>
