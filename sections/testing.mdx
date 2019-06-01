@@ -1,0 +1,271 @@
+import { Notes } from 'mdx-deck';
+
+# Testing
+
+<Notes>
+	There's some common issues you may encounter while testing for an update to PHP7+.
+	We'll cover these common problems and fixes for them.
+</Notes>
+
+---
+
+# Backwards Incompatible Changes
+
+<Notes>
+	You may encounter more than these -- but here's some of the breaking changes to be aware of.
+</Notes>
+
+---
+
+# Alternative PHP Tags
+
+```php
+// PHP 5 compatible script tags
+<script language="php"> ... </script>
+
+// PHP 5 compatible ASP tags
+<% ... %>
+
+// PHP 5 and 7 compatible standard tags
+<?php ... ?>
+```
+
+<Notes>
+	PHP had alternative open and close tags that are now removed.
+	Make sure to use the standard PHP open and close tags instead.
+</Notes>
+
+---
+
+# Old MySQL Functions
+
+* mysql_connect()
+* mysql_select_db()
+* mysql_query()
+* mysql_fetch_array()
+* mysql_error()
+
+<Notes>
+	Not a comprehensive list above.
+	All mysql_* functions are gone -- removed in PHP 7.
+	For the most part, all can be swapped with the corresponding mysqli_* function.
+	About 50% require passing an additional argument, the DB handle, as the first arg.
+	However, for WP, should be using wpdb class to interact with DB regardless.
+</Notes>
+
+---
+
+# POSIX Compatible Regex
+
+* ereg()
+* eregi()
+* ereg_replace()
+* eregi_replace()
+* split()
+* spliti()
+* sql_regcase()
+
+<Notes>
+	Switch to the preg_* family of functions instead as these functions are now removed.
+	The compatibility is very similar, although there's two typical changes that need to be made.
+	1) The addition of delimiters around the expression string (usually a "/").
+	2) Using the "i" modifier instead of dedicated case-insensitive functions.
+	There are also subtle changes in match greediness to watch out for.
+	One thing that can help: Comment your regexes with regex101.com demonstrating how they should work.
+</Notes>
+
+---
+
+# Multiple Default Switch Blocks
+
+```php
+// PHP 5 compatible
+switch ( $x ) {
+    default:
+         echo "I won't be executed in PHP 5";
+         break;
+    default:
+         echo "I will be executed in PHP 5";
+         break;
+}
+```
+
+<Notes>
+	This was a bug, but it's no longer possible to define 2+ define blocks in a switch statement.
+	This will throw a fatal in PHP 7.
+	Previously, only the last default would execute.
+</Notes>
+
+---
+
+# Error and Exception Handling
+
+```php
+// PHP 5 compatible
+function my_custom_error handler( Exception $e ) { 
+	...
+}
+set_exception_handler( 'my_custom_error_handler' );
+
+// PHP 5 and 7 compatible
+function my_custom_error handler( $e ) {
+        ...
+}
+
+// PHP 7 compatible
+function my_custom_error handler( Throwable $e ) {
+        ...
+}
+```
+
+<Notes>
+	Many fatal and recoverable fatal errors have been converted to exceptions in PHP 7.
+	Custom error handlers may no longer be triggered because exceptions are thrown instead.
+	For example, set_exception_handler() is no longer guaranteed to receive exceptions.
+	This will cause fatal errors when an Error object is thrown.
+</Notes>
+
+---
+
+# global Keyword
+
+```php
+// PHP 5 compatible
+global $$foo->bar;
+```
+
+<Notes>
+	The global keyword will now only take unambiguous variables.
+	Make sure to add braces to make it unambiguous.
+</Notes>
+
+---
+
+# Deprecated Features
+
+<Notes>
+	These features won't break in PHP 7, but they will start throwing errors.
+	They'll be removed in future versions, so better to make the updates now.
+</Notes>
+
+---
+
+# PHP 4 Style Constructors
+
+```php
+class test {
+	// Deprecated in PHP 7
+	function test() {
+		echo "I'm the old school constructor.";
+	}
+	
+	// PHP 5 and 7 compatible
+	function __construct() {
+		echo "I'm the constructor you should use!";
+	}
+}
+```
+
+<Notes>
+	Classes with a constructor with the same name as the class name are deprecated in PHP 7.
+	These are PHP 4 style constructors.
+	Use __construct() instead for constructor methods.
+</Notes>
+
+---
+
+# Static Calls to Non-Static Methods
+
+```php
+class hello {
+	// Deprecated in PHP 7
+	public function world() {
+		...
+	}
+
+	// PHP 5 and 7 compatible
+	public static function world() {
+		...
+	}
+}
+
+hello::world();
+```
+
+<Notes>
+	Methods that are called as static methods but not declared as static are deprecated.
+</Notes>
+
+---
+
+# Counting Non-countable Types
+
+```php
+// Deprecated in PHP 7
+count( NULL );
+
+// This is OK
+count( [ 1, 2, 3 ] );
+```
+
+<Notes>
+	Trying to count non-countable types in PHP 7.2 is deprecated.
+	Ensure you're implementing an object with the Countable interface or an array.
+</Notes>
+
+---
+
+# Undefined Variables in compact()
+
+```php
+$a = 'Alpha';
+$b = 'Beta';
+$c = 'Charlie';
+
+// Undefined variable: d
+$arr = compact( 'a', 'b', 'c', 'd' );
+```
+
+<Notes>
+	The compact() function creates an array using 1+ names of variables as parameters.
+	Unset variables were previously silently skipped -- now in PHP 7.3 they will throw notices.
+</Notes>
+
+--- 
+
+# Continue in Switch Without Numeric Arg
+
+```php
+while ( $foo ) {
+	switch ( $bar ) {
+        	case 0:
+			// Throws error in PHP 7.3
+                	continue;
+            	case 1:
+                	continue 2;
+            	case 2:
+                	break;
+	}
+}
+```
+
+<Notes>
+	Using continue in a switch is equivalent to using break.
+	An error will be thrown now if a numeric argument is not appended to continue.
+	The numeric arg represents the number of loops to skip.	
+</Notes>
+
+---
+
+# Searching for Non-String Needles
+
+* strpos
+* strrpos
+* stripos
+* ...and more!
+
+<Notes>
+	Passing a non-string needle to string search functions is deprecated in PHP 7.3.
+	This means needles should be cast or encoded as strings as appropriate.
+	is_countable() is provided to check for this -- introduced in PHP 7.3. and WP 4.9.6 to help.
+</Notes>
