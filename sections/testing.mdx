@@ -48,9 +48,9 @@ import { Notes } from 'mdx-deck';
 <Notes>
 	Not a comprehensive list above.
 	All mysql_* functions are gone -- removed in PHP 7.
-	This may be the largest change to existing code, so take a look for these.
 	For the most part, all can be swapped with the corresponding mysqli_* function.
 	About 50% require passing an additional argument, the DB handle, as the first arg.
+	However, for WP, should be using wpdb class to interact with DB regardless.
 </Notes>
 
 ---
@@ -71,6 +71,7 @@ import { Notes } from 'mdx-deck';
 	1) The addition of delimiters around the expression string (usually a "/").
 	2) Using the "i" modifier instead of dedicated case-insensitive functions.
 	There are also subtle changes in match greediness to watch out for.
+	One thing that can help: Comment your regexes with regex101.com demonstrating how they should work.
 </Notes>
 
 ---
@@ -140,6 +141,15 @@ global $$foo->bar;
 
 ---
 
+# Deprecated Features
+
+<Notes>
+	These features won't break in PHP 7, but they will start throwing errors.
+	They'll be removed in future versions, so better to make the updates now.
+</Notes>
+
+---
+
 # PHP 4 Style Constructors
 
 ```php
@@ -164,7 +174,7 @@ class test {
 
 ---
 
-# Calling Static Methods
+# Static Calls to Non-Static Methods
 
 ```php
 class hello {
@@ -188,7 +198,7 @@ hello::world();
 
 ---
 
-# Counting Non-Countable Types
+# Counting Non-countable Types
 
 ```php
 // Deprecated in PHP 7
@@ -199,6 +209,62 @@ count( [ 1, 2, 3 ] );
 ```
 
 <Notes>
-	Trying to count non-countable types in PHP 7 is now deprecated.
+	Trying to count non-countable types in PHP 7.2 is deprecated.
 	Ensure you're implementing an object with the Countable interface or an array.
+</Notes>
+
+---
+
+# Undefined Variables in compact()
+
+```php
+$a = 'Alpha';
+$b = 'Beta';
+$c = 'Charlie';
+
+// Undefined variable: d
+$arr = compact( 'a', 'b', 'c', 'd' );
+```
+
+<Notes>
+	The compact() function creates an array using 1+ names of variables as parameters.
+	Unset variables were previously silently skipped -- now in PHP 7.3 they will throw notices.
+</Notes>
+
+--- 
+
+# Continue in Switch Without Numeric Arg
+
+```php
+while ( $foo ) {
+	switch ( $bar ) {
+        	case 0:
+			// Throws error in PHP 7.3
+                	continue;
+            	case 1:
+                	continue 2;
+            	case 2:
+                	break;
+	}
+}
+```
+
+<Notes>
+	Using continue in a switch is equivalent to using break.
+	An error will be thrown now if a numeric argument is not appended to continue.
+	The numeric arg represents the number of loops to skip.	
+</Notes>
+
+---
+
+# Searching for Non-String Needles
+
+* strpos
+* strrpos
+* stripos
+* ...and more!
+
+<Notes>
+	Passing a non-string needle to string search functions is deprecated in PHP 7.3.
+	This means needles should be cast or encoded as strings as appropriate.
 </Notes>
