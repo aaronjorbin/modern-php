@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "mdx-deck deck.js -p 4444",
-    "build": "rm -rf dist && mdx-deck build deck.js && mkdir dist/img && cp img/45058.png dist/img/45058.png",
+    "build": "rm -rf dist && mdx-deck build deck.js && mkdir dist/img && cp img/* dist/img/",
     "now-build": "npm run build",
     "help": "mdx-deck"
   },
