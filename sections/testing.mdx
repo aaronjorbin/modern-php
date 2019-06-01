@@ -102,20 +102,14 @@ switch ( $x ) {
 
 ```php
 // PHP 5 compatible
-function my_custom_error handler( Exception $e ) { 
-	...
-}
+function my_custom_error handler( Exception $e ) { ... }
 set_exception_handler( 'my_custom_error_handler' );
 
 // PHP 5 and 7 compatible
-function my_custom_error handler( $e ) {
-        ...
-}
+function my_custom_error handler( $e ) { ... }
 
 // PHP 7 compatible
-function my_custom_error handler( Throwable $e ) {
-        ...
-}
+function my_custom_error handler( Throwable $e ) { ... }
 ```
 
 <Notes>
@@ -174,19 +168,15 @@ class test {
 
 ---
 
-# Static Calls to Non-Static Methods
+# Calling Non-Static Methods
 
 ```php
 class hello {
 	// Deprecated in PHP 7
-	public function world() {
-		...
-	}
+	public function world() { ... }
 
 	// PHP 5 and 7 compatible
-	public static function world() {
-		...
-	}
+	public static function world() { ... }
 }
 
 hello::world();
